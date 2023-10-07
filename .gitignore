@@ -1,0 +1,10 @@
+**/*.cache/*
+**/*.runs/*
+**/*.ip_user_files/*
+**/*.sim/*
+**/*.cache/*
+*/*.hw/*
+*.bit
+*.xpr
+*.zip
+
