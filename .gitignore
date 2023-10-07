@@ -5,6 +5,6 @@
 **/*.cache/*
 */*.hw/*
 *.bit
-*.xpr
+#*.xpr
 *.zip
 
