@@ -41,7 +41,7 @@ module selector81(
             (~A && B && C)? iC3:
             (A && ~B && ~C)? iC4:
             (A && ~B && C)? iC5:
-            (A && A && ~C)? iC6:iC7;
+            (A && B && ~C)? iC6:iC7;
 
 endmodule
 
