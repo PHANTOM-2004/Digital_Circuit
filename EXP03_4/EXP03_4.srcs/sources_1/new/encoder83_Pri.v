@@ -26,58 +26,41 @@ module encoder83_Pri(
     output [2:0] oData,
     output oEO
     );
-    reg [2:0]oData_tmp;
-    reg oE_tmp;
+
+    reg [2:0] oData_tmp;
+    reg oEO_tmp;
+
     always @(*) begin
-        case(iData)
-            8'b??????0:
-            begin 
-                oData_tmp=3'b000;
-                oE_tmp=~iEI;
-            end
-            8'b?????01:
-            begin 
-                oData_tmp=3'b001;
-                oE_tmp=~iEI;
-            end
-            8'b????011:
-            begin
-                oData_tmp=3'b010;
-                oE_tmp=~iEI;
-            end
-            8'b???0111:
-            begin 
-                oData_tmp=3'b011;
-                oE_tmp=~iEI;
-            end
-            8'b??01111:
-            begin 
-                oData_tmp=3'b100;
-                oE_tmp=~iEI;
-            end
-            8'b?011111:
-            begin 
-                oData_tmp=3'b101;
-                oE_tmp=~iEI;
-            end
-            8'b0111111:
-            begin 
-                oData_tmp=3'b110;
-                oE_tmp=~iEI;
-            end
-            8'b1111111:
-            begin
-                oData_tmp=3'b111;
-                oE_tmp=~iEI;
-            end
-            default:
-            begin
-                oData_tmp=3'b111;
-                oE_tmp=iEI;
-            end
-        endcase
+        oData_tmp = 3'b111;
+        if (iEI) 
+            oEO_tmp = 1;
+        else if (iData == 8'b11111111) 
+            oEO_tmp = 0;
+        else begin
+            oEO_tmp = 1;
+            if (!iData[7]) 
+                oData_tmp = 3'b000;
+            else if (!iData[6]) 
+                oData_tmp = 3'b001;
+            else if (!iData[5]) 
+                oData_tmp = 3'b010;
+            else if (!iData[4]) 
+                oData_tmp = 3'b011;
+            else if (!iData[3]) 
+                oData_tmp = 3'b100;
+            else if (!iData[2])
+                 oData_tmp = 3'b101;
+            else if (!iData[1])
+                 oData_tmp = 3'b110;
+            else if (!iData[0])
+                 oData_tmp = 3'b111;
+            else
+                ;
+        end
     end
-    assign oEO=oE_tmp;
+
+
+    assign oEO=oEO_tmp;
     assign oData=oData_tmp;
-    
+
 endmodule

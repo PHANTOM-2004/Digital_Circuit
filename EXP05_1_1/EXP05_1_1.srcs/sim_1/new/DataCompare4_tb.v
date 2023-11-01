@@ -49,5 +49,4 @@ initial begin
     #40 iData_b=4'b0111;
 end
 
-
 endmodule

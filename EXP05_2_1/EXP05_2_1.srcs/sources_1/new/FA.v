@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 2023/10/30 19:17:09
+// Create Date: 2023/10/30 22:16:45
 // Design Name: 
-// Module Name: DataCompare4
+// Module Name: FA
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,14 +20,15 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module DataCompare4(
-    input [3:0] iData_a,
-    input [3:0] iData_b,
-    input [2:0] iData,
-    output [2:0] oData
+module FA(
+    input iA,
+    input iB,
+    input iC,
+    output oS,
+    output oC
     );
-    
-    assign oData = iData_a==iData_b? 
-    iData:iData_a>iData_b?
-    3'b100:3'b010;
+
+    assign oS=iA^iB^iC;
+    assign oC=(iA&iB)|(iA&iC)|(iB&iC);
+
 endmodule
