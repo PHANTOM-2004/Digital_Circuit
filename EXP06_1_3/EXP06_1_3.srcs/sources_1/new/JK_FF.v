@@ -39,7 +39,7 @@ module JK_FF(
                 Q1=~Q1;
                 Q2=~Q2;
             end
-            else if(J==0&&K==0)
+            else if(~J&~K)
                 ;
             else begin
                 Q1=J;

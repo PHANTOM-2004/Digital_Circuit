@@ -1,5 +1,5 @@
 
-module Sychronous_D_FF(
+module Synchronous_D_FF(
 	input CLK,
 	input D,
 	input RST_n,
@@ -7,11 +7,10 @@ module Sychronous_D_FF(
 	output reg Q2
 	);
 
-
 always @(posedge CLK) begin
-	if(RST_n) begin
+	if(!RST_n) begin
 		Q1=0;
-		Q2=1;	
+		Q2=1;
 	end
 	else begin
         Q1 = D;

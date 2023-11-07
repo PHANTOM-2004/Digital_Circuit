@@ -20,13 +20,13 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module Sychronous_D_FF_tb;
+module Synchronous_D_FF_tb;
     reg CLK;
     reg D;
     reg RST_n;
     wire Q1;
     wire Q2;
-Sychronous_D_FF inst(CLK,D,RST_n,Q1,Q2);
+Synchronous_D_FF inst(CLK,D,RST_n,Q1,Q2);
 parameter t=20;
 
 initial begin
@@ -37,14 +37,18 @@ initial begin
 end
 
 initial begin
-    RST_n=0;
     D=1;
-    #80 RST_n=1;
+    #40 D=0;
+    #40 D=1;
+    #40 D=0;
+    #40 D=1;
+end
 
-    #40 D=0;
-    #40 D=1;
-    #40 D=0;
-    #40 D=1;
+initial begin
+    RST_n=0;
+    #20 RST_n=1;
+    #20 RST_n=0;
     #40 RST_n=0;
 end
+
 endmodule
