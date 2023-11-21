@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 2023/11/13 19:17:11
+// Create Date: 2023/11/13 22:02:30
 // Design Name: 
-// Module Name: Counter8
+// Module Name: counter8
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -18,24 +18,36 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
-// module SR_FF(
-//     input S,
-//     input R,
-//     output Q,
-//     );
-//     assign Q = S&R? Q : S? 1:0;
-// endmodule
 
 
-// module Stabilization(
-//     input rst_n,
-//     output st_rst_n
-// );
-//     reg R;
-//     always @(*) begin
-    
-//     end
-// endmodule
+module Divider(
+    input I_CLK,
+    input rst_n,
+    output O_CLK
+    );
+    reg tO_CLK = 0;
+    parameter rate = 100000000;
+    integer cnt = 0;
+
+    always @(posedge I_CLK or negedge rst_n) begin
+        if(~rst_n) begin
+            tO_CLK=0;
+            cnt = 0;
+        end
+
+        else if(cnt==rate/2 - 1) begin
+            cnt = 0;
+            tO_CLK=~tO_CLK;
+        end
+
+        else begin
+            cnt = cnt + 1;
+        end
+    end
+
+    assign O_CLK=tO_CLK;
+
+endmodule
 
 
 module JK_FF(
@@ -111,10 +123,11 @@ module Counter8(
     );
 
     wire [3:0] oQ4; // 辅助的4位信号
-
-    JK_FF FF0(CLK, 1, 1, rst_n, oQ[0]);
-    JK_FF FF1(CLK, oQ[0], oQ[0], rst_n, oQ[1]);
-    JK_FF FF2(CLK, oQ[1] & oQ[0], oQ[1] & oQ[0], rst_n, oQ[2]);
+    wire O_CLK;
+    Divider Div(CLK,rst_n,O_CLK);
+    JK_FF FF0(O_CLK, 1, 1, rst_n, oQ[0]);
+    JK_FF FF1(O_CLK, oQ[0], oQ[0], rst_n, oQ[1]);
+    JK_FF FF2(O_CLK, oQ[1] & oQ[0], oQ[1] & oQ[0], rst_n, oQ[2]);
 
     assign oQ4 = {1'b0, oQ}; // 将最高位设置为0
     display7 disp(oQ4, oDisplay);

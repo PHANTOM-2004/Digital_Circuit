@@ -24,7 +24,8 @@ module Counter8_tb;
     reg clk;
     reg rst_n;
     wire [2:0]oQ;
-    Counter8 inst(clk,rst_n,oQ);
+    wire [6:0]display;
+    Counter8 inst(clk,rst_n,oQ,display);
     parameter t = 40;
     initial begin
         clk=0;
@@ -36,5 +37,6 @@ module Counter8_tb;
     initial begin
         rst_n=0;
         #40 rst_n=1;
+        #600 rst_n=0;
     end
 endmodule

@@ -36,7 +36,8 @@ module Divider_tb;
 
 
     initial begin
-        rst = 1;
+        rst = 0;
+        #20 rst = 1;
         #20 rst = 0;
     end
 

@@ -11,11 +11,11 @@
     <Option Name="CompiledLibDir" Val="$PPRDIR/../../Vivado_lib"/>
     <Option Name="CompiledLibDirXSim" Val=""/>
     <Option Name="CompiledLibDirModelSim" Val="E:/DigitalCircuit/Vivado_lib"/>
-    <Option Name="CompiledLibDirQuesta" Val="E:/DigitalCircuit/Projects/EXP06_2/EXP06_2.cache/compile_simlib/questa"/>
-    <Option Name="CompiledLibDirIES" Val="E:/DigitalCircuit/Projects/EXP06_2/EXP06_2.cache/compile_simlib/ies"/>
-    <Option Name="CompiledLibDirVCS" Val="E:/DigitalCircuit/Projects/EXP06_2/EXP06_2.cache/compile_simlib/vcs"/>
-    <Option Name="CompiledLibDirRiviera" Val="E:/DigitalCircuit/Projects/EXP06_2/EXP06_2.cache/compile_simlib/riviera"/>
-    <Option Name="CompiledLibDirActivehdl" Val="E:/DigitalCircuit/Projects/EXP06_2/EXP06_2.cache/compile_simlib/activehdl"/>
+    <Option Name="CompiledLibDirQuesta" Val="$PCACHEDIR/compile_simlib/questa"/>
+    <Option Name="CompiledLibDirIES" Val="$PCACHEDIR/compile_simlib/ies"/>
+    <Option Name="CompiledLibDirVCS" Val="$PCACHEDIR/compile_simlib/vcs"/>
+    <Option Name="CompiledLibDirRiviera" Val="$PCACHEDIR/compile_simlib/riviera"/>
+    <Option Name="CompiledLibDirActivehdl" Val="$PCACHEDIR/compile_simlib/activehdl"/>
     <Option Name="TargetSimulator" Val="ModelSim"/>
     <Option Name="BoardPart" Val=""/>
     <Option Name="ActiveSimSet" Val="sim_1"/>

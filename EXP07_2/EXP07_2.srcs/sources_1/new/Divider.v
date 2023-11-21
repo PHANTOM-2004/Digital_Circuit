@@ -28,17 +28,19 @@ module Divider(
     parameter rate = 20;
     integer cnt = 0;
 
-    always @(posedge I_CLK or negedge rst) begin
-        if(rst)
+    always @(posedge I_CLK) begin
+        if(rst) begin
             tO_CLK=0;
+            cnt = 0;
+        end
+
+        else if(cnt==rate/2 - 1) begin
+            cnt = 0;
+            tO_CLK=~tO_CLK;
+        end
+
         else begin
-            if(cnt==rate) begin
-                tO_CLK=~tO_CLK;
-                cnt = 0;
-            end
-            else begin
-                cnt = cnt + 1;
-            end
+            cnt = cnt + 1;
         end
     end
 
